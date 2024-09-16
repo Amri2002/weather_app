@@ -7,6 +7,13 @@
     flex-direction: column;
     align-items: center;
 }
+.datetime{
+    font-size: 20px;
+    color: #fff;
+    padding-bottom: 10px;
+    display: flex;
+    gap: 30px;
+}
 .search-bar{
     display: flex;
     align-items: center;

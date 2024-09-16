@@ -13,6 +13,8 @@ const Weather = () => {
 
     const inputRef = useRef()
     const [weatherData, setWeatherData] = useState(false);
+    const [dateTime, setDateTime] = useState(new Date());
+
 
     const allIcons = {
         "01d": clear_icon,
@@ -64,11 +66,23 @@ const Weather = () => {
             console.error("Error in fetching weather data");
         }
     }
+    useEffect(() => {
+        const timer = setInterval(() => setDateTime(new Date()), 1000);
+        return () => clearInterval(timer); // Cleanup timer on unmount
+    }, []);
     useEffect(()=>{
         search("Galle");
     },[])
   return (
         <div className='weather'>
+        <p className='datetime'>
+            <div>
+                {dateTime.toLocaleDateString()}
+                </div>
+                <div>
+                 {dateTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                 </div>
+            </p>
             <div className='search-bar'>
                 <input ref={inputRef} type="text" placeholder='Search' />
                  <img src={search_icon} alt='' onClick={()=>search(inputRef.current.value)}/>
